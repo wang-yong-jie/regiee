@@ -53,6 +53,46 @@ WebMvcConfigurationSupport类的主要作用有以下几点：
 
 **需要注意的是，使用WebMvcConfigurationSupport类时，需要谨慎处理，因为它会完全覆盖Spring Boot的自动配置，可能会导致一些问题。**通常情况下，推荐使用WebMvcConfigurer接口来进行局部的Web MVC配置，而不是直接继承WebMvcConfigurationSupport类。这样可以更好地与Spring Boot的自动配置进行整合，避免不必要的冲突和复杂性。
 
+## 过滤器和拦截器的区别
+
+过滤器（Filter）和拦截器（Interceptor）都是Spring框架中用于对请求进行预处理和后处理的组件，但它们之间有一些区别：
+
+1. 定义位置：
+   - 过滤器是Servlet规范中的一部分，由Servlet容器负责管理，因此不属于Spring框架的一部分。过滤器在请求到达Servlet之前进行预处理，响应返回给客户端之前进行后处理。
+   - 拦截器是Spring框架自己实现的一部分，由Spring容器负责管理。拦截器是在Spring MVC框架中生效，可以拦截Controller的请求处理。
+2. 依赖：
+   - 过滤器依赖于Servlet容器，它与具体的应用框架无关，可以在任何支持Servlet规范的容器中使用。
+   - 拦截器是Spring框架的一部分，依赖于Spring容器。
+3. 配置方式：
+   - 过滤器的配置是在web.xml中进行的，由Servlet容器管理。
+   - 拦截器的配置是在Spring的配置文件中进行的，由Spring容器管理。
+4. 执行顺序：
+   - 过滤器是在请求到达Servlet之前进行预处理，响应返回给客户端之前进行后处理，因此它的执行顺序是在Servlet之前。
+   - 拦截器是在请求到达Controller之前进行预处理，响应返回给客户端之前进行后处理，因此它的执行顺序是在Controller之前。
+5. 功能范围：
+   - 过滤器可以在整个应用中进行拦截，对所有请求起作用。
+   - 拦截器只对Spring MVC中的Controller请求起作用，它可以根据需要选择拦截哪些请求。
+
+总的来说，过滤器更加通用，适用于所有Servlet规范的应用，而拦截器是Spring框架提供的一种更加灵活和强大的请求拦截方式，适用于Spring MVC应用。
+
+## Servlet过滤器
+
+[Servlet过滤器_servlet filter init-param_pan_junbiao的博客-CSDN博客](https://blog.csdn.net/pan_junbiao/article/details/88353292)
+
+## SpringMVC拦截器
+
+[Spring MVC 系列之拦截器 Interceptor 最全总结_springmvc interceptor_大鹏cool的博客-CSDN博客](https://blog.csdn.net/zzuhkp/article/details/121242297)
+
+## AntPathMatcher路径匹配器
+
+### Ant风格
+
+![image-20230801205029122](typora/picture/note.assets/image-20230801205029122.png)
+
+### AntPathMatcher的使用
+
+
+
 # Lombok
 
 ## 什么是Lombok？
@@ -94,3 +134,6 @@ Slf4j的优点在于它提供了一套统一的接口，可以将日志信息传
 
 先不记录，后面需要系统性的学习
 
+# fastjson
+
+先不记录，后面需要系统新的学习

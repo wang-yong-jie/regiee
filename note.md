@@ -99,7 +99,9 @@ WebMvcConfigurationSupport类的主要作用有以下几点：
 
 同时Spring的utils工具类也可以系统的学习一下
 
-## @ControllerAdvice注解
+## 注解
+
+### @ControllerAdvice注解
 
 `@ControllerAdvice`是Spring框架中的一个注解，用于定义全局控制器增强（Global Controller Advice）。它允许在多个控制器中共享相同的行为或异常处理逻辑，并将其集中到一个单独的类中，以便于维护和重用。
 
@@ -135,6 +137,60 @@ public class GlobalExceptionHandler {
 ```
 
 在上述示例中，`handleException`方法使用`@ExceptionHandler`注解，用于处理`Exception`及其子类的异常。当应用程序中抛出任何`Exception`类型的异常时，该方法会被自动调用，返回一个HTTP 500错误状态码和自定义的错误信息。
+
+### @PathVariable注解
+
+`@PathVariable`是Spring框架中的一个注解，用于在Spring MVC控制器的方法参数中获取URL路径中的变量值。
+
+当客户端发送HTTP请求时，如果请求的URL中包含占位符（PathVariable），比如`/users/{id}`，其中`{id}`就是一个占位符，Spring会根据`@PathVariable`注解来提取这个占位符中的值，并将其作为方法参数的值传递给控制器方法。
+
+示例代码：
+
+```java
+@RestController
+public class UserController {
+    
+    @GetMapping("/users/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        // 根据id查询用户信息
+        User user = userService.getUserById(id);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+}
+```
+
+在上述示例中，`getUserById`方法使用`@GetMapping`注解表示该方法处理GET请求，并使用`@PathVariable`注解来获取URL路径中的`id`值。当客户端发送请求`/users/123`时，Spring会自动提取路径中的`123`并将其传递给`getUserById`方法的`id`参数，从而实现根据ID查询用户的功能。
+
+总结：`@PathVariable`注解用于从URL路径中获取变量值，并将其作为方法参数传递给Spring MVC控制器的方法。它简化了从URL中提取参数的操作，使得控制器方法的编写更加简洁和方便。
+
+### @RequestParam注解
+
+`@RequestParam`是Spring框架中的一个注解，用于在Spring MVC控制器的方法参数中获取请求参数的值。
+
+当客户端发送HTTP请求时，如果请求中包含查询参数或表单参数，Spring会根据`@RequestParam`注解来提取这些参数的值，并将其作为方法参数的值传递给控制器方法。
+
+示例代码：
+
+```java
+@RestController
+public class UserController {
+    
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getUsers(@RequestParam String name) {
+        // 根据name查询用户列表
+        List<User> userList = userService.getUsersByName(name);
+        return ResponseEntity.ok(userList);
+    }
+}
+```
+
+在上述示例中，`getUsers`方法使用`@GetMapping`注解表示该方法处理GET请求，并使用`@RequestParam`注解来获取查询参数中的`name`值。当客户端发送请求`/users?name=John`时，Spring会自动提取查询参数中的`name=John`并将其传递给`getUsers`方法的`name`参数，从而实现根据名称查询用户列表的功能。
+
+总结：`@RequestParam`注解用于从请求参数中获取值，并将其作为方法参数传递给Spring MVC控制器的方法。它可以用于获取查询参数、表单参数等类型的请求参数，并且可以指定默认值、是否必需等属性，非常灵活和方便。
 
 # Lombok
 

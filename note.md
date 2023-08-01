@@ -91,9 +91,54 @@ WebMvcConfigurationSupport类的主要作用有以下几点：
 
 ### AntPathMatcher的使用
 
+直接调用里面的match函数，很方便
 
+## DigestUtils工具类
+
+许多加密相关的算法，比如md5，SHA-1、SHA-256等，可以系统的学习一下这些算法
+
+同时Spring的utils工具类也可以系统的学习一下
+
+## @ControllerAdvice注解
+
+`@ControllerAdvice`是Spring框架中的一个注解，用于定义全局控制器增强（Global Controller Advice）。它允许在多个控制器中共享相同的行为或异常处理逻辑，并将其集中到一个单独的类中，以便于维护和重用。
+
+具体来说，`@ControllerAdvice`注解的作用有以下几个方面：
+
+1. 异常处理：可以使用`@ExceptionHandler`注解在`@ControllerAdvice`类中定义全局异常处理方法，用于处理应用程序中抛出的特定异常或所有未处理的异常。这样，不需要在每个控制器中都写相同的异常处理逻辑。
+2. 全局数据绑定：可以使用`@ModelAttribute`注解在`@ControllerAdvice`类中定义全局的数据绑定方法，用于将某些数据添加到所有控制器的模型中。这样，这些数据就可以在多个控制器中共享，避免了在每个控制器中重复设置相同的数据。
+3. 全局初始化：可以使用`@InitBinder`注解在`@ControllerAdvice`类中定义全局的数据初始化方法，用于对所有控制器的表单数据进行预处理。
+4. 统一的响应处理：可以使用`@ResponseBody`注解在`@ControllerAdvice`类中定义全局的响应处理方法，用于统一处理控制器方法的返回结果，例如将返回数据封装成标准格式、处理异常等。
+
+综上所述，`@ControllerAdvice`注解的作用是将多个控制器中的相同行为和逻辑集中到一个类中，并在应用程序范围内进行统一管理和处理，从而提高代码的复用性和可维护性。
+
+`@ExceptionHandler`是Spring框架中的一个注解，用于在`@ControllerAdvice`类或控制器类中定义异常处理方法。当在控制器中的某个方法抛出指定类型的异常时，`@ExceptionHandler`注解所标注的方法会被自动触发，用于处理该异常。
+
+具体来说，`@ExceptionHandler`的作用有以下几个方面：
+
+1. 异常处理：通过在`@ExceptionHandler`注解标注的方法中定义异常处理逻辑，可以在应用程序出现异常时，捕获并处理这些异常，从而提供友好的错误信息或进行特定的操作。
+2. 集中处理异常：`@ExceptionHandler`注解通常与`@ControllerAdvice`注解一起使用，可以将异常处理逻辑集中到一个类中，称为全局异常处理器。这样可以避免在每个控制器中都编写相同的异常处理逻辑，提高代码的重用性和可维护性。
+3. 统一响应处理：通过异常处理方法可以将异常信息封装成标准的响应格式，返回给客户端。这样可以确保客户端得到一致的响应结构，方便客户端处理异常情况。
+
+示例代码：
+
+```java
+@ControllerAdvice
+public class GlobalExceptionHandler {
+    
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleException(Exception ex) {
+        // 自定义异常处理逻辑
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Something went wrong!");
+    }
+}
+```
+
+在上述示例中，`handleException`方法使用`@ExceptionHandler`注解，用于处理`Exception`及其子类的异常。当应用程序中抛出任何`Exception`类型的异常时，该方法会被自动调用，返回一个HTTP 500错误状态码和自定义的错误信息。
 
 # Lombok
+
+需要系统学习一下
 
 ## 什么是Lombok？
 
@@ -137,3 +182,7 @@ Slf4j的优点在于它提供了一套统一的接口，可以将日志信息传
 # fastjson
 
 先不记录，后面需要系统新的学习
+
+# 雪花算法
+
+系统学习

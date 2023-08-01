@@ -51,7 +51,7 @@ WebMvcConfigurationSupport类的主要作用有以下几点：
 2. 替代Spring Boot的自动配置：当我们继承WebMvcConfigurationSupport类时，Spring Boot的自动配置会被禁用，从而允许我们完全控制Web MVC的配置。
 3. 兼容WebMvcConfigurer接口：WebMvcConfigurationSupport类实现了WebMvcConfigurer接口，因此我们也可以通过实现WebMvcConfigurer接口来自定义Web MVC的配置。不过，使用WebMvcConfigurationSupport类可以更方便地集成其他配置。
 
-需要注意的是，使用WebMvcConfigurationSupport类时，需要谨慎处理，因为它会完全覆盖Spring Boot的自动配置，可能会导致一些问题。通常情况下，推荐使用WebMvcConfigurer接口来进行局部的Web MVC配置，而不是直接继承WebMvcConfigurationSupport类。这样可以更好地与Spring Boot的自动配置进行整合，避免不必要的冲突和复杂性。
+**需要注意的是，使用WebMvcConfigurationSupport类时，需要谨慎处理，因为它会完全覆盖Spring Boot的自动配置，可能会导致一些问题。**通常情况下，推荐使用WebMvcConfigurer接口来进行局部的Web MVC配置，而不是直接继承WebMvcConfigurationSupport类。这样可以更好地与Spring Boot的自动配置进行整合，避免不必要的冲突和复杂性。
 
 # Lombok
 
@@ -89,4 +89,8 @@ Slf4j的优点在于它提供了一套统一的接口，可以将日志信息传
 3. 配置底层的日志实现，通常是通过在项目的配置文件中指定具体的日志框架。
 
 总的来说，Slf4j为Java开发者提供了一种简单、统一且灵活的方式来管理日志输出，使得日志记录变得更加便捷和易于维护。
+
+# MyBatis-Plus
+
+先不记录，后面需要系统性的学习
 

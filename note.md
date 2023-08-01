@@ -41,6 +41,18 @@ Spring的配置类使用注解`@Configuration`进行标记，它告诉Spring容�
 
 使用配置类的好处是它更加类型安全，可以通过Java代码来进行配置，避免了繁琐的XML配置，并提供了更好的代码组织和维护性。同时，配置类也可以与其他注解一起使用，如`@ComponentScan`、`@EnableAutoConfiguration`等，进一步简化配置工作。
 
+## WebMvcConfigurationSupport类的作用
+
+WebMvcConfigurationSupport是Spring Framework中的一个类，它是用于配置Web MVC的支持的基类。在Spring Boot应用中，我们可以通过继承WebMvcConfigurationSupport类，并重写其中的方法来自定义Web MVC的配置。
+
+WebMvcConfigurationSupport类的主要作用有以下几点：
+
+1. 提供自定义配置：通过继承WebMvcConfigurationSupport类，我们可以重写其中的方法来自定义Web MVC的配置，例如添加拦截器、配置视图解析器、设置跨域访问等。
+2. 替代Spring Boot的自动配置：当我们继承WebMvcConfigurationSupport类时，Spring Boot的自动配置会被禁用，从而允许我们完全控制Web MVC的配置。
+3. 兼容WebMvcConfigurer接口：WebMvcConfigurationSupport类实现了WebMvcConfigurer接口，因此我们也可以通过实现WebMvcConfigurer接口来自定义Web MVC的配置。不过，使用WebMvcConfigurationSupport类可以更方便地集成其他配置。
+
+需要注意的是，使用WebMvcConfigurationSupport类时，需要谨慎处理，因为它会完全覆盖Spring Boot的自动配置，可能会导致一些问题。通常情况下，推荐使用WebMvcConfigurer接口来进行局部的Web MVC配置，而不是直接继承WebMvcConfigurationSupport类。这样可以更好地与Spring Boot的自动配置进行整合，避免不必要的冲突和复杂性。
+
 # Lombok
 
 ## 什么是Lombok？
